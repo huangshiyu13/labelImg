@@ -73,7 +73,7 @@ class LabelFile(object):
             bndbox = LabelFile.convertPoints2BndBox(points)
             
             f.write('person '+str(bndbox[0])+' '+str(bndbox[1])+' '+ str(bndbox[2]-bndbox[0])+' '+ str(bndbox[3]-bndbox[1])+' 0 0 0 0 0 0 0\n')
-        
+            print imgFileName + ' '+str(bndbox[0])+' '+str(bndbox[1])+' '+ str(bndbox[2]-bndbox[0])+' '+ str(bndbox[3]-bndbox[1])+'\n'
         f.close()
         return
 

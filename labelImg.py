@@ -53,7 +53,7 @@ class MainWindow(QMainWindow, WindowMixin):
         super(MainWindow, self).__init__()
         self.setWindowTitle(__appname__)
         # Save as Pascal voc xml
-        self.defaultSaveDir = '../'
+        self.defaultSaveDir = '../annotations/'
         self.usingPascalVocFormat = True
         if self.usingPascalVocFormat:
             LabelFile.suffix = '.xml'
@@ -144,13 +144,13 @@ class MainWindow(QMainWindow, WindowMixin):
                 'Ctrl+q', 'openAnnotation', u'Open Annotation')
 
         openNextImg = action('&Next Image', self.openNextImg,
-                'n', 'next', u'Open Next')
+                'D', 'next', u'Open Next')
 
         openPrevImg = action('&Prev Image', self.openPrevImg,
                 'p', 'prev', u'Open Prev')
 
         save = action('&Save', self.saveFile,
-                'Ctrl+S', 'save', u'Save labels to file', enabled=False)
+                'S', 'save', u'Save labels to file', enabled=False)
         saveAs = action('&Save As', self.saveFileAs,
                 'Ctrl+Shift+S', 'save-as', u'Save labels to a different file',
                 enabled=False)
@@ -167,7 +167,7 @@ class MainWindow(QMainWindow, WindowMixin):
                 'Ctrl+J', 'edit', u'Move and edit Boxs', enabled=False)
 
         create = action('Create\nRectBox', self.createShape,
-                'Ctrl+N', 'new', u'Draw a new Box', enabled=False)
+                'A', 'new', u'Draw a new Box', enabled=False)
         delete = action('Delete\nRectBox', self.deleteSelectedShape,
                 'Delete', 'delete', u'Delete', enabled=False)
         copy = action('&Duplicate\nRectBox', self.copySelectedShape,
@@ -327,10 +327,10 @@ class MainWindow(QMainWindow, WindowMixin):
         self.move(position)
         saveDir = settings.get('savedir', None)
         self.lastOpenDir = settings.get('lastOpenDir', None)
-        if os.path.exists(unicode(saveDir)):
-            self.defaultSaveDir = unicode(saveDir)
-            self.statusBar().showMessage('%s started. Annotation will be saved to %s' %(__appname__, self.defaultSaveDir))
-            self.statusBar().show()
+        #if os.path.exists(unicode(saveDir)):
+         #   self.defaultSaveDir = unicode(saveDir)
+          #  self.statusBar().showMessage('%s started. Annotation will be saved to %s' %(__appname__, self.defaultSaveDir))
+           # self.statusBar().show()
 
         # or simply:
         #self.restoreGeometry(settings['window/geometry']
@@ -706,6 +706,7 @@ class MainWindow(QMainWindow, WindowMixin):
             if self.usingPascalVocFormat is True and \
                     self.defaultSaveDir is not None:
                     basename = os.path.basename(os.path.splitext(self.filename)[0])
+                    
                     xmlPath = os.path.join(self.defaultSaveDir, basename + '.xml')
                     self.loadPascalXMLByFilename(xmlPath)
 
@@ -762,6 +763,7 @@ class MainWindow(QMainWindow, WindowMixin):
         s['fill/color'] = self.fillColor
         s['recentFiles'] = self.recentFiles
         s['advanced'] = not self._beginner
+        
         if self.defaultSaveDir is not None and len(self.defaultSaveDir) > 1:
             s['savedir'] = str(self.defaultSaveDir)
         else:
