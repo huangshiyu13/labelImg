@@ -53,7 +53,7 @@ class MainWindow(QMainWindow, WindowMixin):
         super(MainWindow, self).__init__()
         self.setWindowTitle(__appname__)
         # Save as Pascal voc xml
-        self.defaultSaveDir = None
+        self.defaultSaveDir = '../'
         self.usingPascalVocFormat = True
         if self.usingPascalVocFormat:
             LabelFile.suffix = '.xml'
@@ -563,7 +563,6 @@ class MainWindow(QMainWindow, WindowMixin):
         # Can add differrent annotation formats here
         try:
             if self.usingPascalVocFormat is True:
-                print 'savePascalVocFormat save to:' + filename
                 lf.savePascalVocFormat(filename, shapes, unicode(self.filename), self.imageData,
                     self.lineColor.getRgb(), self.fillColor.getRgb())
             else:
@@ -902,10 +901,13 @@ class MainWindow(QMainWindow, WindowMixin):
         assert not self.image.isNull(), "cannot save empty image"
         if self.hasLabels():
             if self.defaultSaveDir is not None and len(str(self.defaultSaveDir)):
-                print 'handle the image:' + self.filename
+                
                 imgFileName = os.path.basename(self.filename)
-                savedFileName = os.path.splitext(imgFileName)[0] + LabelFile.suffix
+                
+                savedFileName = os.path.splitext(imgFileName)[0] + '.txt'
+          
                 savedPath = os.path.join(str(self.defaultSaveDir), savedFileName)
+                
                 self._saveFile(savedPath)
             else:
                 self._saveFile(self.filename if self.labelFile\

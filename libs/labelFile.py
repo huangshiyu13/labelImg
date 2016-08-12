@@ -64,15 +64,17 @@ class LabelFile(object):
         writer = PascalVocWriter(imgFolderName, imgFileNameWithoutExt,\
                                  imageShape, localImgPath=imagePath)
         bSave = False
+        f = open(filename,'w')
+        f.write('% bbGt version=3\n')
+        
         for shape in shapes:
             points = shape['points']
             label = shape['label']
             bndbox = LabelFile.convertPoints2BndBox(points)
-            writer.addBndBox(bndbox[0], bndbox[1], bndbox[2], bndbox[3], label)
-            bSave = True
-
-        if bSave:
-            writer.save(targetFile = filename)
+            
+            f.write('person '+str(bndbox[0])+' '+str(bndbox[1])+' '+ str(bndbox[2]-bndbox[0])+' '+ str(bndbox[3]-bndbox[1])+' 0 0 0 0 0 0 0\n')
+        
+        f.close()
         return
 
     @staticmethod
