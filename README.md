@@ -1,7 +1,7 @@
 # LabelImg
 
 [![Build Status](https://travis-ci.org/tzutalin/labelImg.png)](https://travis-ci.org/tzutalin/labelImg)
-
+这是一个detection的标boundingbox的repo。现在支持快速标定人，可以改成多种物品标记
 LabelImg is a graphical image annotation tool.
 
 It is written in Python and uses Qt for its graphical interface.
