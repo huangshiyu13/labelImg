@@ -2,7 +2,12 @@
 
 [![Build Status](https://travis-ci.org/tzutalin/labelImg.png)](https://travis-ci.org/tzutalin/labelImg)
 
+
 需要修改labelImg.py第56行，指定存储groundtruth的文件夹
+
+这是一个detection的标boundingbox的repo。现在支持快速标定人，可以改成多种物品标记
+LabelImg is a graphical image annotation tool.
+
 
 运行linkCV.sh链接opencv,使用cv2
 
