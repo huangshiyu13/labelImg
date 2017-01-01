@@ -5,7 +5,7 @@ import os.path
 import re
 import sys
 import subprocess
-
+import shutil
 from functools import partial
 from collections import defaultdict
 
@@ -53,7 +53,7 @@ class MainWindow(QMainWindow, WindowMixin):
         super(MainWindow, self).__init__()
         self.setWindowTitle(__appname__)
         # Save as Pascal voc xml
-        self.defaultSaveDir = '../annotations/'
+        self.defaultSaveDir = '/Users/shiyuhuang/Downloads/ATOCAR/DATA/video/Ano'
         self.usingPascalVocFormat = True
         if self.usingPascalVocFormat:
             LabelFile.suffix = '.xml'
@@ -144,13 +144,13 @@ class MainWindow(QMainWindow, WindowMixin):
                 'Ctrl+q', 'openAnnotation', u'Open Annotation')
 
         openNextImg = action('&Next Image', self.openNextImg,
-                'D', 'next', u'Open Next')
+                'S', 'next', u'Open Next')
 
         openPrevImg = action('&Prev Image', self.openPrevImg,
                 'p', 'prev', u'Open Prev')
 
         save = action('&Save', self.saveFile,
-                'S', 'save', u'Save labels to file', enabled=False)
+                'Ctrl+S', 'save', u'Save labels to file', enabled=False)
         saveAs = action('&Save As', self.saveFileAs,
                 'Ctrl+Shift+S', 'save-as', u'Save labels to a different file',
                 enabled=False)
@@ -846,6 +846,10 @@ class MainWindow(QMainWindow, WindowMixin):
         self.dirname = dirpath
         self.mImgList = self.scanAllImages(dirpath)
         self.openNextImg()
+        self.defaultSaveDir = dirpath+"Ano/";
+        if os.path.isdir(self.defaultSaveDir):
+            shutil.rmtree(self.defaultSaveDir)
+        os.mkdir(self.defaultSaveDir)
 
     def openPrevImg(self, _value=False):
         if not self.mayContinue():

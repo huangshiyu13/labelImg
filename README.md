@@ -2,15 +2,10 @@
 
 [![Build Status](https://travis-ci.org/tzutalin/labelImg.png)](https://travis-ci.org/tzutalin/labelImg)
 
-LabelImg is a graphical image annotation tool.
+需要修改labelImg.py第56行，指定存储groundtruth的文件夹
 
-It is written in Python and uses Qt for its graphical interface.
+运行linkCV.sh链接opencv,使用cv2
 
-The annotation file will be saved as an XML file. The annotation format is PASCAL VOC format, and the format is the same as [ImageNet](http://www.image-net.org/)
-
-![](icons/demo.png)
-
-[![Demo video](https://j.gifs.com/4xy9z2.gif)](https://www.youtube.com/watch?v=p0nR2YsCY_U&feature=youtu.be)
 
 ## Dependencies
 * Linux/Ubuntu/Mac

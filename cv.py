@@ -1,1 +1,5 @@
-/usr/local/Cellar/opencv/2.4.10/lib/python2.7/site-packages/cv.py
+XSym
+0065
+a44633cf90ce9b1e2640637c693202d8
+/usr/local/Cellar/opencv/2.4.13/lib/python2.7/site-packages/cv.py
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
